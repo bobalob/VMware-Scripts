@@ -1,12 +1,13 @@
 #Gets or Sets VAAI Options on All hosts
 Param ( 
   [Switch]$set=$False,
-  $Setting=0
+  $Setting=0,
+  $Location
 )
 
 if ($set) {
 
-  Get-VMHost | %{
+  Get-VMHost -Location $Location | %{
     Get-AdvancedSetting $_ -Name DataMover.HardwareAcceleratedMove | 
         Set-AdvancedSetting -Value $Setting -Confirm:$false
     Get-AdvancedSetting $_ -Name DataMover.HardwareAcceleratedInit | 
@@ -19,7 +20,7 @@ if ($set) {
 
 } else {
 
-  Get-VMHost | %{
+  Get-VMHost -Location $Location | %{
     Write-Host $_.Name -ForegroundColor Yellow
     Get-AdvancedSetting $_ -Name DataMover.HardwareAcceleratedMove 
     Get-AdvancedSetting $_ -Name DataMover.HardwareAcceleratedInit 
