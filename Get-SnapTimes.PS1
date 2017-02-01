@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-	Gets snapshot creation and deletion time for a specified VM filter
+    Gets snapshot creation and deletion time for a specified VM filter. Requires vSphere PowerCLI
 .PARAMETER NumDays
     Filters for the most recent X days of VM logs
 .PARAMETER VmFilter
